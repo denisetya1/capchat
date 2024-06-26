@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+model User {
+  id                String    @id @default(cuid())
+  instagramId       String    @unique
+  username          String
+  fullName          String?
+  profilePictureUrl String?
+  bio               String?
+  website           String?
+  isBusiness        Boolean
+  media             Media[]
+  comments          Comment[]
+  insights          Insight[]
+  authToken         AuthToken?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+}
+
+model Media {
+  id            String   @id @default(cuid())
+  instagramId   String   @unique
+  caption       String?
+  mediaType     String
+  mediaUrl      String
+  permalink     String
+  timestamp     DateTime
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  comments      Comment[]
+  insights      Insight[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Comment {
+  id            String   @id @default(cuid())
+  instagramId   String   @unique
+  text          String
+  timestamp     DateTime
+  mediaId       String
+  media         Media    @relation(fields: [mediaId], references: [id])
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Insight {
+  id            String   @id @default(cuid())
+  metric        String
+  value         Int
+  timestamp     DateTime
+  mediaId       String?
+  media         Media?   @relation(fields: [mediaId], references: [id])
+  userId        String?
+  user          User?    @relation(fields: [userId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model AuthToken {
+  id             String    @id @default(cuid())
+  token          String
+  refreshToken   String?
+  expiresAt      DateTime
+  userId         String @unique
+  user           User      @relation(fields: [userId], references: [id])
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
