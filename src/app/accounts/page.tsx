@@ -31,7 +31,7 @@ const Page = () => {
         <div>
           <button onClick={getInstagramAccounts}>Get Instagram Accounts</button>
         </div>
-        {accounts && accounts.map((account) => <div>{account.id}</div>)}
+        {accounts && accounts.map((account) => <div key={account.id}>{account.id}</div>)}
       </div>}
     </div>
   )

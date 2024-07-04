@@ -18,7 +18,7 @@ interface InstagramAccount {
   picture: string;
 }
 
-const oAuthPage = () => {
+const Page = () => {
   const [accounts, setAccounts] = useState<InstagramAccount[] | null>(null)
   const [accessToken, setAccesstoken] = useState('')
   const [userId, setUserId] = useState('')
@@ -73,4 +73,4 @@ const oAuthPage = () => {
   )
 }
 
-export default oAuthPage
+export default Page
