@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useState } from 'react'
 
 interface InstagramAccount {
@@ -8,7 +7,7 @@ interface InstagramAccount {
   picture: string;
 }
 
-const page = () => {
+const Page = () => {
   const [accounts, setAccounts] = useState<InstagramAccount[] | null>(null)
   const accessToken: string = 'EAAV71LZB2tg0BOZB87264sW0Qp6CMVLZC1LzWHnf4lyZAGtZAVQ1x0dxDuD4m1HktRAp9FBZAwtbKZBF15wk7FN9bwCNI4BLhVjH0lZCpwqc7ysZAQ5XIMqywygUt26wIMXo1vdVe8gtP6SnDZCOCj14SyAZCmWIGvsZBhxGbphGMEOezQQqEAZAEyMnWneSiQiP35FyOsR0TLvQZD'
 
@@ -38,4 +37,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
