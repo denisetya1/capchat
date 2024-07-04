@@ -2,14 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 export const GET = async (req: NextRequest) =>  {
-  const search = req.nextUrl.searchParams.get('search');
-  console.log(search);
+  const hubInt = req.nextUrl.searchParams.get('hub.challenge');
+  console.log("hub", hubInt);
 
-  const brands = {
-    success: true
-  }
-
-  return NextResponse.json(brands);
+  return new Response(hubInt, {
+    status: 200,
+  });
 }
 
 export const POST = async (req: NextRequest, request: Request) =>  {
