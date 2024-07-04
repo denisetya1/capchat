@@ -12,7 +12,7 @@ export const GET = async (req: NextRequest) =>  {
 
 export const POST = async (req: NextRequest, request: Request) =>  {
   const body = await request.json()
-  console.log(body);
+  console.log('post', body);
 
   const brands = {
     success: true
