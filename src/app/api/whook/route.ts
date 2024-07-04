@@ -10,7 +10,7 @@ export const GET = async (req: NextRequest) =>  {
   });
 }
 
-export const POST = async (req: NextRequest, request: Request) =>  {
+export const POST = async (request: Request) =>  {
   const body = await request.json()
   console.log('post', body);
 
