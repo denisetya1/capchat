@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "AutomationsTrigger" ADD COLUMN     "ctrCount" INTEGER NOT NULL DEFAULT 0,
+ADD COLUMN     "runCount" INTEGER NOT NULL DEFAULT 0;
